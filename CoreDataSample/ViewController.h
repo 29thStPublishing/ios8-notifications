@@ -2,13 +2,12 @@
 //  ViewController.h
 //  CoreDataSample
 //
-//  Created by StandardUser on 10/7/14.
-//  Copyright (c) 2014 NewGenApps. All rights reserved.
+//  Created by Lata Sadhwani on 10/7/14.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <NSUserActivityDelegate>
 
 
 @end

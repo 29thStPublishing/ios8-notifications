@@ -2,8 +2,7 @@
 //  AppDelegate.m
 //  CoreDataSample
 //
-//  Created by StandardUser on 10/7/14.
-//  Copyright (c) 2014 NewGenApps. All rights reserved.
+//  Created by Lata Sadhwani on 10/7/14.
 //
 
 #import "AppDelegate.h"

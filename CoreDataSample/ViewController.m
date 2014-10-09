@@ -2,8 +2,7 @@
 //  ViewController.m
 //  CoreDataSample
 //
-//  Created by StandardUser on 10/7/14.
-//  Copyright (c) 2014 NewGenApps. All rights reserved.
+//  Created by Lata Sadhwani on 10/7/14.
 //
 
 #import "ViewController.h"
@@ -33,6 +32,13 @@
     [self.booksTable reloadData];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    // Invalidate user activity before leaving the view controller
+    [self.userActivity invalidate];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -42,6 +48,7 @@
 - (BOOL) prefersStatusBarHidden {
     return YES;
 }
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -57,6 +64,31 @@
     cell.detailTextLabel.text = [book valueForKey:@"category"];
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSManagedObject *book = booksArray[indexPath.row];
+    
+    // Prepare for hand-off. Invalidate a useractivity if it exists
+    [self.userActivity invalidate];
+    
+    // Make sure this value matches the key in NSUserActivityTypes in Info.plist
+    NSUserActivity *myActivity = [[NSUserActivity alloc] initWithActivityType:@"com.adhoc.CoreDataSample.browsing"];
+    NSString *webURL = [book valueForKey:@"weburl"];
+    myActivity.webpageURL = [NSURL URLWithString:[webURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    // Assign the user activity for the view controller. This will show up the hand-off activity on the default browser
+    // of the system
+    [self setUserActivity:myActivity];
+}
+
+#pragma mark - NSUserActivityDelegate
+
+- (void)userActivityWasContinued:(NSUserActivity *)userActivity {
+    // Do some action here after the hand-off is complete i.e. page opened in browser on mac
 }
 
 @end
