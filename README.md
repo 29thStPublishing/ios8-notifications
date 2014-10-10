@@ -25,8 +25,10 @@ Hand-off from Native App to Browser
 
 1. Enable Hand-offs on a device and a mac (for Mac you will find it in System Preferences->General. On phone you will find it in Settings->General)
 
-2. Run the app on the device. Tap on a row
+2. Turn on Bluetooth on both the Mac and iPhone as well as sign in to the same iCloud account on both devices
 
-3. An icon of your default browser will show up on the mac with a phone symbol. Tap on it
+3. Run the app on the device. Tap on a row
 
-4. This will open the web url associated with the row (as mentioned in the feed) on the web browser
+4. An icon of your default browser will show up on the mac with a phone symbol. Tap on it
+
+5. This will open the web url associated with the row (as mentioned in the feed) on the web browser
